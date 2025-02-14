@@ -1,5 +1,5 @@
 import java.util.*;
-public class asdm {
+public class userinput {
     public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args){
