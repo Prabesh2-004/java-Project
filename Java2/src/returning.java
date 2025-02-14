@@ -7,6 +7,7 @@ public class returning {
         System.out.println("Enter a Second Number: ");
         int secondNumber = scanner.nextInt();
         System.out.println(sum(firstNumber, secondNumber));
+        scanner.close();
     }
     public static int sum(int firstNumber, int secondNumber){
         return firstNumber + secondNumber;
