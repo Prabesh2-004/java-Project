@@ -6,14 +6,14 @@ public class simpleInterest {
             System.out.println("1. Simple Interest\n2. Compound Interest\n3. Exit");
             String choice = scanner.nextLine();
             switch(choice){
-                case "S": simpleInterest(); break;
+                case "S": simpleInterests(); break;
                 case "C": compoundInterest(); break;
                 case "E": return;
                 default: System.out.println("Invalid Choice");
             }
         }
     }
-    private static void simpleInterest(){
+    private static void simpleInterests(){
         System.out.println("Enter a Value");
         System.out.print("Principal Amount: ");
         double principal = scanner.nextDouble();
