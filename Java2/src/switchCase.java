@@ -11,6 +11,7 @@ public class switchCase {
                 case "2": Female(); break;
                 case "3": Other(); break;
                 case "4": return;
+                default: System.out.println("Invalid choice");
             }
         }
     }

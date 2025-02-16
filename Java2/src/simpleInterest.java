@@ -32,10 +32,8 @@ public class simpleInterest {
         double time = scanner.nextDouble();
         System.out.print("Rate of Interest: ");
         double rate = scanner.nextDouble();
-        double result = ((1 + rate/ 100));
-        double maths = Math.pow(result, time);
-        double finalResult = ((principal * maths));
-        System.out.println(finalResult);
+        double result = principal * Math.pow(((1 + (rate/100))), time);
+        System.out.println(result);
         scanner.nextLine();
     }
 }
