@@ -2,7 +2,7 @@ import java.util.*;
 public class practiceForExam {
     private static Scanner scan = new Scanner(System.in);
     public static void main(String[] args) {
-        while(true){
+        do{
             System.out.println("1. Prime Number\n2. Factorial\n3. Exit");
             String choose = scan.nextLine();
             switch(choose){
@@ -11,14 +11,14 @@ public class practiceForExam {
                 case "3": return;
                 default: System.out.println("Invalid Choice");
             }
-        }
+        }while(true);
     }
     public static void prime(){
-        System.out.print("Enter N: ");
-        int n = scan.nextInt(); 
-        System.out.println("Prime numbers from 1 to " + n + ":");
+        System.out.print("Enter Number: ");
+        int Number = scan.nextInt(); 
+        System.out.println("Prime numbers from 2 to " + Number + ":");
         scan.nextLine();
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= Number; i++) {
             if (isPrime(i)) {
                 System.out.print(i + " \n");
             }
