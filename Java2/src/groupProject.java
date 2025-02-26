@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class groupProject {
     private static Scanner scan = new Scanner(System.in);
-    private static String fileName = "User_Data.txt";
+    private static String fileName = "User_Data.txt";               //storing the user input data 
 
     public static void main(String[] args) {
         while (true) {
@@ -18,7 +18,7 @@ public class groupProject {
                 case "1":
                     register();
                     break;
-                case "2":
+                case "2":                   //Allow User to choose one of the option;
                     login();
                     break;
                 case "3":
@@ -29,11 +29,15 @@ public class groupProject {
         }
     }
 
-    private static void register() {
+    private static void register() {                    //Allow user to fill their details
         System.out.print("Enter Your FullName: ");
         String name = scan.nextLine();
         System.out.print("Enter Your Address: ");
         String address = scan.nextLine();
+        System.out.print("Enter Your Age:  ");
+        String agestr = scan.nextLine();
+        int age = Integer.parseInt(agestr);
+        if(age >= 18){
         System.out.print("Enter Your Phone Number: ");
         String phone = scan.nextLine();
         System.out.print("Enter Your CitizenShip Number: ");
@@ -45,19 +49,23 @@ public class groupProject {
             role = "user";
         }
         System.out.print("Enter your Username: ");
-        String username = scan.nextLine();
+        String username = scan.nextLine();                  //checking username already exist of not if condition true it return if condition false it will continue
         if (usernameExists(username)) {
             System.out.println("Username already exists.");
             return;
         }
         System.out.print("Enter your Password: ");
         String password = scan.nextLine();
-        saveUserToFile(new User(name, address, phone, citizenship, role, username, password));
+        saveUserToFile(new User(name, address, agestr, phone, citizenship, role, username, password));                  //saving the data to the file name User_Data.txt
         System.out.println("Registration successful! You can now log in.");
     }
+    else{
+        return;
+    }
+    }
 
-    private static boolean usernameExists(String username) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+    private static boolean usernameExists(String username) {                //it check the given username is already exist in file or not
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {        // try-catch block in Java is a mechanism to handle exceptions. This ensures that the application continues to run even if an error occurs. The code inside the try block is executed, and if any exception occurs, it is then caught by the catch block.
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] userDetails = line.split(",");
@@ -71,9 +79,9 @@ public class groupProject {
         return false;
     }
 
-    private static void saveUserToFile(User user) {
+    private static void saveUserToFile(User user) {         //it will create a file. if the file already exist it will store data in end of the file,without overwritting existing content
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
-            writer.write(user.getName() + "," + user.getAddress() + "," + user.getPhone() + "," + user.getCitizenship() + "," + user.getRole() + "," + user.getUsername() + "," + user.getPassword());
+            writer.write(user.getName() + "," + user.getAddress() + "," + user.getAge() + "," + user.getPhone() + "," + user.getCitizenship() + "," + user.getRole() + "," + user.getUsername() + "," + user.getPassword());
             writer.newLine();
         } catch (IOException e) {
             System.out.println("An error occurred while saving user data.");
@@ -93,7 +101,7 @@ public class groupProject {
                 if (userDetails.length > 6 && userDetails[5].equals(username) && userDetails[6].equals(password)) {
                     System.out.println("Welcome, " + userDetails[0] + "!");
                     found = true;
-                    User user = new User(userDetails[0], userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], userDetails[6]);
+                    User user = new User(userDetails[0], userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], userDetails[6], userDetails[7]);
                     dashboard(user);
                     break;
                 }
@@ -212,15 +220,17 @@ public class groupProject {
 class User {
     private String name;
     private String address;
+    private String age;
     private String phone;
     private String citizenship;
     private String role;
     private String username;
     private String password;
 
-    public User(String name, String address, String phone, String citizenship, String role, String username, String password) {
+    public User(String name, String address, String age, String phone, String citizenship, String role, String username, String password) {
         this.name = name;
         this.address = address;
+        this.age = age;
         this.phone = phone;
         this.citizenship = citizenship;
         this.role = role;
@@ -234,6 +244,9 @@ class User {
 
     public String getAddress() {
         return address;
+    }
+    public String getAge(){
+        return age;
     }
 
     public String getPhone() {
