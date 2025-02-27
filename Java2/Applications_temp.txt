@@ -1,2 +1,0 @@
-kamala221,car,12345,Pending
-krishna112,bike,54321,Rejected

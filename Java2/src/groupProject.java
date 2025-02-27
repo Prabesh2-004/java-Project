@@ -11,7 +11,7 @@ public class groupProject {
 
     public static void main(String[] args) {
         while (true) {
-            System.out.println("choose");
+            System.out.println("Choose:");
             System.out.println("1. Register\n2. Login\n3. Exit");
             String choice = scan.nextLine();
             switch (choice) {
@@ -42,6 +42,10 @@ public class groupProject {
         String phone = scan.nextLine();
         System.out.print("Enter Your CitizenShip Number: ");
         String citizenship = scan.nextLine();
+        if(citizenShipExist(citizenship)){
+            System.out.println("You MotherFucker! What are You Thinking CitizenShip With Same Number Exist Come Suck My Dick Bitch!");
+            return;
+        }
         System.out.print("Enter Your Role(Admin/User): ");
         String role = scan.nextLine();
         if (!role.equals("user") && !role.equals("admin")) {
@@ -60,16 +64,32 @@ public class groupProject {
         System.out.println("Registration successful! You can now log in.");
     }
     else{
+        System.out.println("Fuck Yourself Kid Go Drink Some Milk.");
         return;
     }
     }
+    private static boolean citizenShipExist(String citizenship){
+        try(BufferedReader reader = new BufferedReader(new FileReader(fileName))){
+            String line;
+            while((line = reader.readLine()) != null){
+                String[] userDetails = line.split(",");
+                if(userDetails[4].equals(citizenship)){
+                    return true;
+                }
+            }
+        }
+        catch (IOException e) {
+            System.out.println("An error occurred while checking CitizenShip Number.");
+        }
+        return false;
+    }
 
-    private static boolean usernameExists(String username) {                //it check the given username is already exist in file or not
+    private static boolean usernameExists(String username) {                //it check the given username is already exist in file or not in a file called User_Data.txt
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {        // try-catch block in Java is a mechanism to handle exceptions. This ensures that the application continues to run even if an error occurs. The code inside the try block is executed, and if any exception occurs, it is then caught by the catch block.
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] userDetails = line.split(",");
-                if (userDetails.length > 6 && userDetails[5].equals(username)) {
+                if (userDetails.length > 6 && userDetails[6].equals(username)) {
                     return true;
                 }
             }
@@ -98,7 +118,7 @@ public class groupProject {
             boolean found = false;
             while ((line = reader.readLine()) != null) {
                 String[] userDetails = line.split(",");
-                if (userDetails.length > 6 && userDetails[5].equals(username) && userDetails[6].equals(password)) {
+                if (userDetails.length > 6 && userDetails[6].equals(username) && userDetails[7].equals(password)) {
                     System.out.println("Welcome, " + userDetails[0] + "!");
                     found = true;
                     User user = new User(userDetails[0], userDetails[1], userDetails[2], userDetails[3], userDetails[4], userDetails[5], userDetails[6], userDetails[7]);
@@ -198,7 +218,7 @@ public class groupProject {
     }
     private static void updateApplicationStatus(String[] applicationDetails) {
         try (BufferedReader reader = new BufferedReader(new FileReader("Applications.txt"));
-             BufferedWriter writer = new BufferedWriter(new FileWriter("Applications_temp.txt"))) {
+             BufferedWriter writer = new BufferedWriter(new FileWriter("Applications.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] currentDetails = line.split(",");
@@ -213,7 +233,7 @@ public class groupProject {
             System.out.println("An error occurred while updating application status.");
         }
         // Rename temp file to original file
-        new java.io.File("Applications_temp.txt").renameTo(new java.io.File("Applications.txt"));
+        new java.io.File("Applications.txt").renameTo(new java.io.File("Applications.txt"));
     }
 }
 
