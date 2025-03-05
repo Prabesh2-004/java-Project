@@ -1,3 +1,5 @@
-Prabesh Lamichhane,Kathmandu,20,9829077624,123456,admin,prabesh2004,prabesh123
-Eren Yeager,Paradise,20,9829829773,654321,user,erenyeager321,eren123
-Light Yagami,Japan,19,958708975,98765544,user,kira123,kira321
+prabesh lamichhane,kathmandu,21,8846384,473743,admin,prabesh2004,prabesh123
+light yagami,kathmandu,21,743743,627474,user,kira,kira123
+eren yeager,japan,21,73647,627457,user,eren,eren123
+monkey d. luffy,japan,21,732672,8326,user,luffy,luffy123
+john snow,winterfall,30,2632763,372537,user,john,john123

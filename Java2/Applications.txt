@@ -1,0 +1,4 @@
+kira,car,73742,Approved
+eren,bike,7637263,Approved
+luffy,bus,76273,Rejected
+john,car,637235,Rejected
